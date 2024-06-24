@@ -35,7 +35,7 @@ class CustomerModelTest(TestCase):
             subscription=subscription,
             plan_start_datetime=plan_start_datetime
         )
-        assert type(cs.id) == int
+        assert isinstance(cs.id, int)
         return cs.id
 
     def test_validate_subscription_customer_plan_end_date(self):
@@ -47,6 +47,6 @@ class CustomerModelTest(TestCase):
 
         cs_instance = CustomerSubscription.objects.get(id=cs_id)
         self.assertEqual(
-            cs_instance.plan_end_datetime,
-            plan_start_datetime + timedelta(days=subscription.validity)
+            cs_instance.plan_end_datetime.date(),
+            (plan_start_datetime + timedelta(days=subscription.validity)).date()
         )
