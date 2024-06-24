@@ -11,8 +11,8 @@ class CustomerSerializer(serializers.ModelSerializer):
 
 
 class CustomerSubscriptionSerializer(serializers.ModelSerializer):
-    customer = CustomerSerializer()
-    subscription = SubscriptionSerializer()
+    customer = CustomerSerializer(read_only=True)
+    subscription = SubscriptionSerializer(read_only=True)
 
     class Meta:
         model = CustomerSubscription
